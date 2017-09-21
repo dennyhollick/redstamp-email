@@ -10,11 +10,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Redstamp Newsletter</title>
-  <link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon">
   <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w"
     crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/main.css">
-  <script src="/reload/reload.js"></script>
+  <link rel="stylesheet" href="./css/main.css">
+  <!-- Enable me to hot refresh when editing -->
+  <!-- <script src="/reload/reload.js"></script> -->
 </head>
 
 <body>
@@ -28,7 +28,7 @@
       </div>
       <div class="hero">
         <div class="pure-g">
-          <div class="pure-u-7-12">
+          <div class="pure-u-md-7-12 pure-u-sm-1">
             <div class="hero-title">
               Summer Newsletter
             </div>
@@ -36,8 +36,8 @@
               Lorem ipsum dolor sit amet proin gravida amet lorem ipsum sum dolor sit.
             </div>
           </div>
-          <div class="pure-u-5-12">
-            <div class="hero-image">
+          <div class="pure-u-md-5-12 pure-u-sm-1">
+            <div class="pure-img">
               <img srcset="./assets/newsletter-graphic-placeholder.png, 
                 ./assets/newsletter-graphic-placeholder@2x.jpg, 
                 ./assets/newsletter-graphic-placeholder@3x.jpg" sizes="(max-width: 320px) 280px,
@@ -48,7 +48,7 @@
         </div>
       </div>
       <div class="sub-hero-image">
-        <img srcset="./assets/bitmap.png, 
+        <img class="pure-img" srcset="./assets/bitmap.png, 
             ./assets/bitmap@2x.jpg, 
             ./assets/bitmap@3x.jpg" sizes="(max-width: 320px) 280px,
             (max-width: 480px) 440px,
@@ -149,7 +149,7 @@
         <div class="pure-g">
           <div class="pure-u-sm-1 pure-u-md-11-24">
             <div class="blog-card">
-              <img src="./assets/rs-blog-illustration-traction@3x.png" alt="Traction Takeaways">
+              <img class="pure-img" src="./assets/rs-blog-illustration-traction@3x.png" alt="Traction Takeaways">
               <div class="blog-card-content">
                 <div class="blog-card-tag">
                   Traction
@@ -159,14 +159,13 @@
                 </div>
                 <p class="blog-card-text">We learned so much from leading growth and business leaders at Traction Conf 2017. Here are our favourite
                   Twitter takeaways from the two-day event.</p>
-
               </div>
             </div>
           </div>
           <div class="pure-u-1-12"></div>
           <div class="pure-u-sm-1 pure-u-md-11-24">
             <div class="blog-card">
-              <img src="./assets/rs-blog-automationmadeeasy-1024@3x.png" alt="Traction Takeaways">
+              <img class="pure-img" src="./assets/rs-blog-automationmadeeasy-1024@3x.png" alt="Traction Takeaways">
               <div class="blog-card-content">
 
                 <div class="blog-card-tag">
@@ -201,14 +200,14 @@
         </object>
       </div>
     </div>
-    <hr class="footer-divider"> 
+    <hr class="footer-divider">
     <div class="footer">
-    <a class="footer-links">Unsubscribe</a><a class="footer-links">View in browser</a>
-    <div class="footer-copyright"><span>© 2011-2017 Red Stamp Agency Inc. All rights reserved.</span></div>
-    <object class="footer-logo" data="./assets/logo-icon.svg" type="image/svg+xml">
+      <a class="footer-links">Unsubscribe</a><a class="footer-links">View in browser</a>
+      <div class="footer-copyright"><span>© 2011-2017 Red Stamp Agency Inc. All rights reserved.</span></div>
+      <object class="footer-logo" data="./assets/logo-icon.svg" type="image/svg+xml">
       <img src="./assets/rs-logo@3x.png" />
     </object>
-    </div>   
+    </div>
   </div>
 </body>
 
