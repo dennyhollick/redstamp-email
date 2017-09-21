@@ -7,6 +7,10 @@
   src: url("../assets/fonts/AlrightSans-Bold.otf"); }
 
 @font-face {
+  font-family: "AlrightSansLT-Medium";
+  src: url("../assets/fonts/AlrightSans-Medium.otf"); }
+
+@font-face {
   font-family: "TiemposText";
   src: url("../assets/fonts/TiemposText-Regular.otf"); }
 
@@ -132,6 +136,10 @@ a {
   margin: 2em 0 1em 0;
   opacity: .2; }
 
+.footer-divider {
+  margin: 1em 0 1em 0;
+  opacity: .2; }
+
 .blog-card {
   background: white;
   border: solid 1px #eceef0;
@@ -150,6 +158,49 @@ a {
     font-size: .9em;
     color: #0a273c;
     opacity: .73; }
+
+.cta-bar {
+  background-color: #ec5447;
+  text-align: center;
+  line-height: 3em;
+  color: white;
+  font-family: "AlrightSansLT";
+  font-size: .9em; }
+
+.alrightsansmedium {
+  font-family: "AlrightSansLT-Medium"; }
+
+.alrightsansbold {
+  font-family: "AlrightSansLT-Bold"; }
+
+.pre-footer {
+  line-height: 5em;
+  color: #85939e;
+  opacity: .5; }
+  .pre-footer .icon {
+    float: right;
+    padding: 1.3em .3em 0 .3em; }
+
+.footer {
+  text-align: center; }
+  .footer .footer-links {
+    font-family: "AlrightSansLT";
+    color: #0a273c;
+    text-transform: uppercase;
+    font-size: .9em;
+    padding: 1em;
+    letter-spacing: 0.5px; }
+  .footer .footer-copyright {
+    color: #85939e;
+    font-size: .9em;
+    opacity: 0.5;
+    font-family: "AlrightSansLT";
+    padding: 1em; }
+  .footer .footer-logo {
+    padding: 2em; }
+
+.pure-g {
+  letter-spacing: normal; }
 
 @media screen and (min-width: 38em) {
   .pure-u-sm-1,
