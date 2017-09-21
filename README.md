@@ -2,9 +2,9 @@
 
 To view the work, simply download the repository and open index.html
 
-[x] Cross Browser Tested
-[x] Responsive
-[x] Includes SVG and edited SVG
+- [x] Cross Browser Tested
+- [x] Responsive
+- [x] Includes SVG and edited SVG
 
 ## Development Install
 
@@ -20,7 +20,7 @@ To start in development mode:
 
 *Perfection is the enemy of good*
 
-[ ] Segment scss files
-[ ] Improve responsiveness of hero image
-[ ] Add links 
+- [ ] Segment scss files
+- [ ] Improve responsiveness of hero image
+- [ ] Add links 
 
