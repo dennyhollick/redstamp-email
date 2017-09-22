@@ -1,214 +1,750 @@
 <!DOCTYPE html>
-<!--[if lte IE 6]><html class="preIE7 preIE8 preIE9"><![endif]-->
-<!--[if IE 7]><html class="preIE8 preIE9"><![endif]-->
-<!--[if IE 8]><html class="preIE9"><![endif]-->
-<!--[if gte IE 9]><!-->
-<html>
-<!--<![endif]-->
-
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Redstamp Newsletter</title>
-  <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w"
-    crossorigin="anonymous">
-  <link rel="stylesheet" href="./css/main.css">
-  <!-- Enable me to hot refresh when editing -->
-  <!-- <script src="/reload/reload.js"></script> -->
+			
+	<meta charset="utf-8"> <!-- utf-8 works for most cases -->
+	<meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
+	<meta name="x-apple-disable-message-reformatting">  <!-- Disable auto-scale in iOS 10 Mail entirely -->
+	<title></title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+
+	<!-- Web Font / @font-face : BEGIN -->
+	<!-- NOTE: If web fonts are not required, lines 10 - 27 can be safely removed. -->
+
+	<!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
+	<!--[if mso]>
+		<style>
+			* {
+				font-family: sans-serif !important;
+			}
+		</style>
+	<![endif]-->
+
+	<!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
+	<!--[if !mso]><!-->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Neuton:300,400,700" rel="stylesheet">	
+	<!-- Web Font / @font-face : END -->
+
+	<!-- CSS Reset : BEGIN -->
+	<style>
+
+		/* What it does: Remove spaces around the email design added by some email clients. */
+		/* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+		html,
+		body {
+			margin: 0 auto !important;
+			padding: 0 !important;
+			height: 100% !important;
+			width: 100% !important;
+		}
+
+		/* What it does: Stops email clients resizing small text. */
+		* {
+			-ms-text-size-adjust: 100%;
+			-webkit-text-size-adjust: 100%;
+		}
+
+		/* What it does: Centers email on Android 4.4 */
+		div[style*="margin: 16px 0"] {
+			margin: 0 !important;
+		}
+
+		/* What it does: Stops Outlook from adding extra spacing to tables. */
+		table,
+		td {
+			mso-table-lspace: 0pt !important;
+			mso-table-rspace: 0pt !important;
+		}
+
+		/* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
+		table {
+			border-spacing: 0 !important;
+			border-collapse: collapse !important;
+			table-layout: fixed !important;
+			margin: 0 auto !important;
+		}
+		table table table {
+			table-layout: auto;
+		}
+
+		/* What it does: Uses a better rendering method when resizing images in IE. */
+		img {
+			-ms-interpolation-mode:bicubic;
+		}
+
+		/* What it does: A work-around for email clients meddling in triggered links. */
+		*[x-apple-data-detectors],  /* iOS */
+		.x-gmail-data-detectors,    /* Gmail */
+		.x-gmail-data-detectors *,
+		.aBn {
+			border-bottom: 0 !important;
+			cursor: default !important;
+			color: inherit !important;
+			text-decoration: none !important;
+			font-size: inherit !important;
+			font-family: inherit !important;
+			font-weight: inherit !important;
+			line-height: inherit !important;
+		}
+
+		/* What it does: Prevents Gmail from displaying an download button on large, non-linked images. */
+		.a6S {
+			display: none !important;
+			opacity: 0.01 !important;
+		}
+		/* If the above doesn't work, add a .g-img class to any image in question. */
+		img.g-img + div {
+			display: none !important;
+		}
+
+		/* What it does: Prevents underlining the button text in Windows 10 */
+		.button-link {
+			text-decoration: none !important;
+		}
+
+		/* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+		/* Create one of these media queries for each additional viewport size you'd like to fix */
+		/* Thanks to Eric Lepetit @ericlepetitsf) for help troubleshooting */
+		@media only screen and (min-device-width: 375px) and (max-device-width: 413px) { /* iPhone 6 and 6+ */
+			.email-container {
+				min-width: 375px !important;
+			}
+		}
+
+	</style>
+	<!-- CSS Reset : END -->
+
+	<!-- Progressive Enhancements : BEGIN -->
+	<style>
+
+	/* What it does: Hover styles for buttons */
+	.button-td,
+	.button-a {
+		transition: all 100ms ease-in;
+	}
+	.button-td:hover,
+	.button-a:hover {
+		background: #555555 !important;
+		border-color: #555555 !important;
+	}
+
+	/* Media Queries */
+	@media screen and (max-width: 480px) {
+
+		/* What it does: Forces elements to resize to the full width of their container. Useful for resizing images beyond their max-width. */
+		.fluid {
+			width: 100% !important;
+			max-width: 100% !important;
+			height: auto !important;
+			margin-left: auto !important;
+			margin-right: auto !important;
+		}
+
+		/* What it does: Forces table cells into full-width rows. */
+		.stack-column,
+		.stack-column-center {
+			display: block !important;
+			width: 100% !important;
+			max-width: 100% !important;
+			direction: ltr !important;
+		}
+		/* And center justify these ones. */
+		.stack-column-center {
+			text-align: center !important;
+		}
+
+		/* What it does: Generic utility class for centering. Useful for images, buttons, and nested tables. */
+		.center-on-narrow {
+			text-align: center !important;
+			display: block !important;
+			margin-left: auto !important;
+			margin-right: auto !important;
+			float: none !important;
+		}
+		table.center-on-narrow {
+			display: inline-block !important;
+		}
+
+		/* What it does: Adjust typography on small screens to improve readability */
+		.email-container p {
+			font-size: 17px !important;
+			line-height: 22px !important;
+		}
+	}
+
+	</style>
+	<!-- Progressive Enhancements : END -->
+
+	<!-- What it does: Makes background images in 72ppi Outlook render at correct size. -->
+	<!--[if gte mso 9]>
+	<xml>
+		<o:OfficeDocumentSettings>
+			<o:AllowPNG/>
+			<o:PixelsPerInch>96</o:PixelsPerInch>
+		</o:OfficeDocumentSettings>
+	</xml>
+	<![endif]-->
+
 </head>
+<body width="100%" bgcolor="#222222" style="margin: 0; mso-line-height-rule: exactly;">
+			
+	<center style="width: 100%; background: #ffffff; text-align: left;">
 
-<body>
-  <div class="main-container">
-    <div class="hero-container">
-      <div class="header">
-        <object data="./assets/rs-logo.svg" type="image/svg+xml">
-          <img src="./assets/rs-logo@3x.png" />
-        </object>
-        <a class="float-right" href="http://redstamp.co">View in your browser</a>
-      </div>
-      <div class="hero">
-        <div class="pure-g">
-          <div class="pure-u-md-7-12 pure-u-sm-1">
-            <div class="hero-title">
-              Summer Newsletter
-            </div>
-            <div class="hero-subtitle">
-              Lorem ipsum dolor sit amet proin gravida amet lorem ipsum sum dolor sit.
-            </div>
-          </div>
-          <div class="pure-u-md-5-12 pure-u-sm-1">
-            <div class="pure-img">
-              <img srcset="./assets/newsletter-graphic-placeholder.png, 
-                ./assets/newsletter-graphic-placeholder@2x.jpg, 
-                ./assets/newsletter-graphic-placeholder@3x.jpg" sizes="(max-width: 320px) 280px,
-                (max-width: 480px) 440px,
-                800px" src="./assets/newsletter-graphic-placeholder@3x.jpg" alt="Traction Conference Logo">
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="sub-hero-image">
-        <img class="pure-img" srcset="./assets/bitmap.png, 
-            ./assets/bitmap@2x.jpg, 
-            ./assets/bitmap@3x.jpg" sizes="(max-width: 320px) 280px,
-            (max-width: 480px) 440px,
-            800px" src="./assets/bitmap@3x.jpg" alt="The Redstamp Team">
-      </div>
-    </div>
-    <div class="grey-background">
-      <div class="body-container">
-        <div class="top-content-card">
-          <div class="content">
-            <div class="pure-g">
-              <div class="pure-u-1-6">
-                <hr class="line">
-              </div>
-              <div class="pure-u-1-12">
-              </div>
-              <div class="pure-u-3-4">
-                <span class="content-tag">Traction</span>
-                <p class="content-header">Traction Conference 2017</p>
-                <div class="content-body">
-                  <p>Hi There! We’re still riding high on our incredible experience at this year’s Traction conference! We helped
-                    sponsor the event, bringing some of the best minds in tech, SaaS, and growth to Vancouver for a few days
-                    of straight-up geeking out.</p>
-                  <p>We made a lot of new friends and learned a lot of new things, and we’re already excited to make an even
-                    bigger splash next year!</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="body-heading">
-          <div class="body-header">
-            3 Tips for Action
-          </div>
-          <div class="body-subheading">
-            All the things you need to know lorem ipsum.
-          </div>
-        </div>
-        <div class="content-card-fw">
-          <div class="content">
-            <div class="pure-g">
-              <div class="pure-u-1-4">
-                <object class="image" data="./assets/growth-icon.svg" type="image/svg+xml">
-                        <img src="./assets/growth-icon@3x.png" />
-                      </object>
-              </div>
-              <div class="pure-u-3-4">
-                <span class="header">Investing for Brand Growth</span>
-                <p class="content-text">Zapier is an incredibly versatile tool that integrates with all sorts of apps to make your life easier</p>
-                <span class="read-more-link">Read More</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="content-card-fw">
-          <div class="content">
-            <div class="pure-g">
-              <div class="pure-u-1-4">
-                <object class="image" data="./assets/growth-icon.svg" type="image/svg+xml">
-                          <img src="./assets/growth-icon@3x.png" />
-                        </object>
-              </div>
-              <div class="pure-u-3-4">
-                <span class="header">Social Media Trends</span>
-                <p class="content-text">Zapier is an incredibly versatile tool that integrates with all sorts of apps to make your life easier</p>
-                <span class="read-more-link">Read More</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="content-card-fw">
-          <div class="content">
-            <div class="pure-g">
-              <div class="pure-u-1-4">
-                <object class="image" data="./assets/growth-icon.svg" type="image/svg+xml">
-                        <img src="./assets/growth-icon@3x.png" />
-                      </object>
-              </div>
-              <div class="pure-u-3-4">
-                <span class="header">Social Media Trends</span>
-                <p class="content-text">Zapier is an incredibly versatile tool that integrates with all sorts of apps to make your life easier</p>
-                <span class="read-more-link">Read More</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <hr class="body-divider">
-      <div class="body-container">
-        <div class="body-heading">
-          <div class="body-header">
-            Your Favorite Blog Posts
-          </div>
-          <div class="body-subheading">
-            Our readers have found theses posts interesting this month.
-          </div>
-        </div>
-        <div class="pure-g">
-          <div class="pure-u-sm-1 pure-u-md-11-24">
-            <div class="blog-card">
-              <img class="pure-img" src="./assets/rs-blog-illustration-traction@3x.png" alt="Traction Takeaways">
-              <div class="blog-card-content">
-                <div class="blog-card-tag">
-                  Traction
-                </div>
-                <div class="blog-card-header">
-                  Takeaway from Traction
-                </div>
-                <p class="blog-card-text">We learned so much from leading growth and business leaders at Traction Conf 2017. Here are our favourite
-                  Twitter takeaways from the two-day event.</p>
-              </div>
-            </div>
-          </div>
-          <div class="pure-u-1-12"></div>
-          <div class="pure-u-sm-1 pure-u-md-11-24">
-            <div class="blog-card">
-              <img class="pure-img" src="./assets/rs-blog-automationmadeeasy-1024@3x.png" alt="Traction Takeaways">
-              <div class="blog-card-content">
+		<!-- Visually Hidden Preheader Text : BEGIN -->
+		<div style="display: none; font-size: 1px; line-height: 1px; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden; mso-hide: all; font-family: sans-serif;">
+			Get all the learnings from Traction Conference without having to buy a ticket!
+		</div>
+		<!-- Visually Hidden Preheader Text : END -->
 
-                <div class="blog-card-tag">
-                  Traction
-                </div>
-                <div class="blog-card-header">
-                  Sales Automation Made Easy
-                </div>
-                <p class="blog-card-text">We learned so much from leading growth and business leaders at Traction Conf 2017. Here are our favourite
-                  Twitter takeaways from the two-day event.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="cta-bar">
-      <span>We now do CRO, let us optimize your landing pages – </span><span class="alrightsansmedium">Find out more</span>
-    </div>
-    <div class="body-container">
-      <div class="pre-footer">
-        <span>Made In </span><span class="alrightsansbold">Canada</span>
-        <object class="icon" data="./assets/instagram-icon.svg" type="image/svg+xml">
-        </object>
-        <object class="icon" data="./assets/facebook-icon.svg" type="image/svg+xml">
-        </object>
-        <object class="icon" data="./assets/twitter-icon.svg" type="image/svg+xml">
-        </object>
-        <object data="./assets/canada.svg" type="image/svg+xml">
-        </object>
-        <object class="icon" data="./assets/linkedin-icon.svg" type="image/svg+xml">
-        </object>
-      </div>
-    </div>
-    <hr class="footer-divider">
-    <div class="footer">
-      <a class="footer-links">Unsubscribe</a><a class="footer-links">View in browser</a>
-      <div class="footer-copyright"><span>© 2011-2017 Red Stamp Agency Inc. All rights reserved.</span></div>
-      <object class="footer-logo" data="./assets/logo-icon.svg" type="image/svg+xml">
-      <img src="./assets/rs-logo@3x.png" />
-    </object>
-    </div>
-  </div>
+		<!--
+			Set the email width. Defined in two places:
+			1. max-width for all clients except Desktop Windows Outlook, allowing the email to squish on narrow but never go wider than 680px.
+			2. MSO tags for Desktop Windows Outlook enforce a 680px width.
+			Note: The Fluid and Responsive templates have a different width (600px). The hybrid grid is more "fragile", and I've found that 680px is a good width. Change with caution.
+		-->
+		<div style="max-width: 680px; margin: auto;" class="email-container">
+			<!--[if mso]>
+			<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="680" align="center">
+			<tr>
+			<td>
+			<![endif]-->
+
+			<!-- Email Header : BEGIN -->
+			<!-- ********TODO:******** FALLBACK ON SVG, Font -->
+			<table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 680px;">
+				<tr>
+					<td style="padding: 20px 0; text-align: left">
+						<img src="./assets/rs-logo.svg" />
+					</td>
+					<td style="padding: 20px 0; text-align: right">
+							<a style="font-family: Open Sans; text-decoration: none; font-size: 10px; color: #ec5447;" href="http://redstamp.co">View in your browser</a>
+					</td>
+				</tr>
+			</table>
+			<!-- Email Header : END -->
+
+			<!-- Email Body : BEGIN -->
+			<table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 680px;" class="email-container">
+
+			<!-- Thumbnail Right, Text Left : BEGIN -->
+			<tr>
+					<!-- dir=rtl is where the magic happens. This can be changed to dir=ltr to swap the alignment on wide while maintaining stack order on narrow. -->
+					<td dir="rtl" bgcolor="#ffffff" align="center" height="100%" valign="top" width="100%" style="padding: 10px 0;">
+						<!--[if mso]>
+						<table role="presentation" border="0" cellspacing="0" cellpadding="0" align="center" width="660" style="width: 660px;">
+						<tr>
+						<td align="center" valign="top" width="660">
+						<![endif]-->
+						<table role="presentation" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:660px;">
+							<tr>
+								<td align="center" valign="top" style="font-size:0; padding: 10px 0;">
+									<!--[if mso]>
+									<table role="presentation" border="0" cellspacing="0" cellpadding="0" align="center" width="660" style="width: 660px;">
+									<tr>
+									<td align="left" valign="top" width="220" style="width: 220px;">
+									<![endif]-->
+									<div style="display:inline-block; margin: 0 -2px; max-width: 200px; min-width:160px; vertical-align:top; width:100%;" class="stack-column">
+										<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+											<tr>
+												<td dir="ltr" style="padding: 0 10px 10px 10px;">
+													<img src="http://placehold.it/200" width="200" height="" border="0" alt="alt_text" class="center-on-narrow" style="width: 100%; max-width: 200px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+												</td>
+											</tr>
+										</table>
+									</div>
+									<!--[if mso]>
+									</td>
+									<td align="left" valign="top" width="440" style="width: 440px;">
+									<![endif]-->
+									<div style="display:inline-block; margin: 0 -2px; max-width:66.66%; min-width:320px; vertical-align:top;" class="stack-column">
+										<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+											<tr>
+												<td dir="ltr" style="font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555; padding: 10px 10px 0; text-align: left;" class="center-on-narrow">
+													<h2 style="margin: 0 0 10px 0; font-family: Neuton; font-size: 44px; line-height: 21px; color: #333333; font-weight: 400;">Summer Newsletter</h2>
+													<p style="margin: 0 0 10px 0;">Lorem ipsum dolor sit amet proin gravida amet lorem ipsum sum dolor sit.
+														</p>
+												</td>
+											</tr>
+										</table>
+									</div>
+									<!--[if mso]>
+									</td>
+									</tr>
+									</table>
+									<![endif]-->
+								</td>
+							</tr>
+						</table>
+						<!--[if mso]>
+						</td>
+						</tr>
+						</table>
+						<![endif]-->
+					</td>
+				</tr>
+				<!-- Thumbnail Right, Text Left : END -->
+
+				<!-- 1 Column Text + Button : BEGIN -->
+				<tr>
+					<td bgcolor="#ffffff">
+						<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+							<tr>
+								<td style="padding: 40px 40px 20px; text-align: center;">
+									<h1 style="margin: 0; font-family: sans-serif; font-size: 24px; line-height: 27px; color: #333333; font-weight: normal;">Praesent laoreet malesuada&nbsp;cursus.</h1>
+								</td>
+							</tr>
+							<tr>
+								<td style="padding: 0 40px 40px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555; text-align: center;">
+									<p style="margin: 0;">Maecenas sed ante pellentesque, posuere leo id, eleifend dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent laoreet malesuada cursus. Maecenas scelerisque congue eros eu posuere. Praesent in felis ut velit pretium lobortis rhoncus ut&nbsp;erat.</p>
+								</td>
+							</tr>
+							<tr>
+								<td style="padding: 0 40px 40px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+									<!-- Button : BEGIN -->
+									<table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" style="margin: auto;">
+										<tr>
+											<td style="border-radius: 3px; background: #222222; text-align: center;" class="button-td">
+												<a href="http://www.google.com" style="background: #222222; border: 15px solid #222222; font-family: sans-serif; font-size: 13px; line-height: 1.1; text-align: center; text-decoration: none; display: block; border-radius: 3px; font-weight: bold;" class="button-a">
+													<span style="color:#ffffff;" class="button-link">&nbsp;&nbsp;&nbsp;&nbsp;A Button&nbsp;&nbsp;&nbsp;&nbsp;</span>
+												</a>
+											</td>
+										</tr>
+									</table>
+									<!-- Button : END -->
+								</td>
+							</tr>
+
+						</table>
+					</td>
+				</tr>
+				<!-- 1 Column Text + Button : END -->
+
+				<!-- Background Image with Text : BEGIN -->
+				<tr>
+					<!-- Bulletproof Background Images c/o https://backgrounds.cm -->
+					<td background="http://placehold.it/680x180/222222/666666" bgcolor="#222222" valign="middle" style="text-align: center; background-position: center center !important; background-size: cover !important;">
+						<!--[if gte mso 9]>
+						<v:image xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="border: 0; display: inline-block; width: 680px; height: 180px;" src="http://placehold.it/680x180/222222/666666" />
+						<v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="border: 0; display: inline-block; position: absolute; width: 680px; height: 180px;">
+						<v:fill opacity="0%" color="#222222" />
+						<![endif]-->
+						<div>
+							<!--[if mso]>
+							<table role="presentation" border="0" cellspacing="0" cellpadding="0" align="center" width="500">
+							<tr>
+							<td align="center" valign="top" width="500">
+							<![endif]-->
+							<table role="presentation" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:500px; margin: auto;">
+								<tr>
+									<td valign="middle" style="text-align: center; padding: 40px 20px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #ffffff;">
+										<p style="margin: 0;">Maecenas sed ante pellentesque, posuere leo id, eleifend dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent laoreet malesuada cursus. Maecenas scelerisque congue eros eu posuere. Praesent in felis ut velit pretium lobortis rhoncus ut&nbsp;erat.</p>
+									</td>
+								</tr>
+							</table>
+							<!--[if mso]>
+							</td>
+							</tr>
+							</table>
+							<![endif]-->
+						</div>
+						<!--[if gte mso 9]>
+						</v:fill>
+						</v:rect>
+						</v:image>
+						<![endif]-->
+					</td>
+				</tr>
+				<!-- Background Image with Text : END -->
+
+				<!-- 2 Even Columns : BEGIN -->
+				<tr>
+					<td bgcolor="#ffffff" align="center" height="100%" valign="top" width="100%">
+						<!--[if mso]>
+						<table role="presentation" border="0" cellspacing="0" cellpadding="0" align="center" width="660">
+						<tr>
+						<td align="center" valign="top" width="660">
+						<![endif]-->
+						<table role="presentation" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:660px;">
+							<tr>
+								<td align="center" valign="top" style="font-size:0; padding: 10px 0;">
+									<!--[if mso]>
+									<table role="presentation" border="0" cellspacing="0" cellpadding="0" align="center" width="660">
+									<tr>
+									<td align="left" valign="top" width="330">
+									<![endif]-->
+									<div style="display:inline-block; margin: 0 -2px; width:100%; min-width:200px; max-width:330px; vertical-align:top;" class="stack-column">
+										<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+											<tr>
+												<td style="padding: 10px 10px;">
+													<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-size: 14px;text-align: left;">
+														<tr>
+															<td>
+																<img src="http://placehold.it/310" width="310" height="" border="0" alt="alt_text" class="center-on-narrow" style="width: 100%; max-width: 310px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+															</td>
+														</tr>
+														<tr>
+															<td style="font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555; padding-top: 10px;" class="stack-column-center">
+																<p style="margin: 0;">Maecenas sed ante pellentesque, posuere leo id, eleifend dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+															</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+										</table>
+									</div>
+									<!--[if mso]>
+									</td>
+									<td align="left" valign="top" width="330">
+									<![endif]-->
+									<div style="display:inline-block; margin: 0 -2px; width:100%; min-width:200px; max-width:330px; vertical-align:top;" class="stack-column">
+										<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+											<tr>
+												<td style="padding: 10px 10px;">
+													<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-size: 14px;text-align: left;">
+														<tr>
+															<td>
+																<img src="http://placehold.it/310" width="310" height="" border="0" alt="alt_text" class="center-on-narrow" style="width: 100%; max-width: 310px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+															</td>
+														</tr>
+														<tr>
+															<td style="font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555; padding-top: 10px;" class="stack-column-center">
+																<p style="margin: 0;">Maecenas sed ante pellentesque, posuere leo id, eleifend dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+															</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+										</table>
+									</div>
+									<!--[if mso]>
+									</td>
+									</tr>
+									</table>
+									<![endif]-->
+								</td>
+							</tr>
+						</table>
+						<!--[if mso]>
+						</td>
+						</tr>
+						</table>
+						<![endif]-->
+					</td>
+				</tr>
+				<!-- 2 Even Columns : END -->
+
+				<!-- 3 Even Columns : BEGIN -->
+				<tr>
+					<td bgcolor="#ffffff" align="center" height="100%" valign="top" width="100%" style="padding: 10px 0;">
+						<!--[if mso]>
+						<table role="presentation" border="0" cellspacing="0" cellpadding="0" align="center" width="660">
+						<tr>
+						<td align="center" valign="top" width="660">
+						<![endif]-->
+						<table role="presentation" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:660px;">
+							<tr>
+								<td align="center" valign="top" style="font-size:0;">
+									<!--[if mso]>
+									<table role="presentation" border="0" cellspacing="0" cellpadding="0" align="center" width="660">
+									<tr>
+									<td align="left" valign="top" width="220">
+									<![endif]-->
+									<div style="display:inline-block; margin: 0 -2px; max-width:33.33%; min-width:220px; vertical-align:top; width:100%;" class="stack-column">
+										<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+											<tr>
+												<td style="padding: 10px 10px;">
+													<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-size: 14px;text-align: left;">
+														<tr>
+															<td>
+																<img src="http://placehold.it/200" width="200" height="" border="0" alt="alt_text" class="center-on-narrow" style="width: 100%; max-width: 200px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+															</td>
+														</tr>
+														<tr>
+															<td style="font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555; padding-top: 10px;" class="stack-column-center">
+																<p style="margin: 0;">Maecenas sed ante pellentesque, posuere leo id, eleifend dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+															</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+										</table>
+									</div>
+									<!--[if mso]>
+									</td>
+									<td align="left" valign="top" width="220">
+									<![endif]-->
+									<div style="display:inline-block; margin: 0 -2px; max-width:33.33%; min-width:220px; vertical-align:top; width:100%;" class="stack-column">
+										<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+											<tr>
+												<td style="padding: 10px 10px;">
+													<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-size: 14px;text-align: left;">
+														<tr>
+															<td>
+																<img src="http://placehold.it/200" width="200" height="" border="0" alt="alt_text" class="center-on-narrow" style="width: 100%; max-width: 200px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+															</td>
+														</tr>
+														<tr>
+															<td style="font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555; padding-top: 10px;" class="stack-column-center">
+																<p style="margin: 0;">Maecenas sed ante pellentesque, posuere leo id, eleifend dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+															</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+										</table>
+									</div>
+									<!--[if mso]>
+									</td>
+									<td align="left" valign="top" width="220">
+									<![endif]-->
+									<div style="display:inline-block; margin: 0 -2px; max-width:33.33%; min-width:220px; vertical-align:top; width:100%;" class="stack-column">
+										<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+											<tr>
+												<td style="padding: 10px 10px;">
+													<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-size: 14px;text-align: left;">
+														<tr>
+															<td>
+																<img src="http://placehold.it/200" width="200" height="" border="0" alt="alt_text" class="center-on-narrow" style="width: 100%; max-width: 200px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+															</td>
+														</tr>
+														<tr>
+															<td style="font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555; padding-top: 10px;" class="stack-column-center">
+																<p style="margin: 0;">Maecenas sed ante pellentesque, posuere leo id, eleifend dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+															</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+										</table>
+									</div>
+									<!--[if mso]>
+									</td>
+									</tr>
+									</table>
+									<![endif]-->
+								</td>
+							</tr>
+						</table>
+						<!--[if mso]>
+						</td>
+						</tr>
+						</table>
+						<![endif]-->
+					</td>
+				</tr>
+				<!-- 3 Even Columns : END -->
+
+				<!-- Thumbnail Left, Text Right : BEGIN -->
+				<tr>
+					<!-- dir=ltr is where the magic happens. This can be changed to dir=rtl to swap the alignment on wide while maintaining stack order on narrow. -->
+					<td dir="ltr" bgcolor="#ffffff" align="center" height="100%" valign="top" width="100%" style="padding: 10px 0;">
+						<!--[if mso]>
+						<table role="presentation" border="0" cellspacing="0" cellpadding="0" align="center" width="660" style="width: 660px;">
+						<tr>
+						<td align="center" valign="top" width="660" style="width: 660px;">
+						<![endif]-->
+						<table role="presentation" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:660px;">
+							<tr>
+								<td align="center" valign="top" style="font-size:0; padding: 10px 0;">
+									<!--[if mso]>
+									<table role="presentation" border="0" cellspacing="0" cellpadding="0" align="center" width="660" style="width: 660px;">
+									<tr>
+									<td align="left" valign="top" width="220" style="width: 220px;">
+									<![endif]-->
+									<div style="display:inline-block; margin: 0 -2px; max-width: 200px; min-width:160px; vertical-align:top; width:100%;" class="stack-column">
+										<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+											<tr>
+												<td dir="ltr" style="padding: 0 10px 10px 10px;">
+													<img src="http://placehold.it/200" width="200" height="" border="0" alt="alt_text" class="center-on-narrow" style="width: 100%; max-width: 200px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+												</td>
+											</tr>
+										</table>
+									</div>
+									<!--[if mso]>
+									</td>
+									<td align="left" valign="top" width="440" style="width: 440px;">
+									<![endif]-->
+									<div style="display:inline-block; margin: 0 -2px; max-width:66.66%; min-width:320px; vertical-align:top;" class="stack-column">
+										<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+											<tr>
+												<td dir="ltr" style="font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555; padding: 10px 10px 0; text-align: left;" class="center-on-narrow">
+													<h2 style="margin: 0 0 10px 0; font-family: sans-serif; font-size: 18px; line-height: 21px; color: #333333; font-weight: bold;">Class aptent taciti sociosqu</h2>
+													<p style="margin: 0 0 10px 0;">Maecenas sed ante pellentesque, posuere leo id, eleifend dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+													<!-- Button : BEGIN -->
+													<table role="presentation" cellspacing="0" cellpadding="0" border="0" class="center-on-narrow" style="float:left;">
+														<tr>
+															<td style="border-radius: 3px; background: #222222; text-align: center;" class="button-td">
+																<a href="http://www.google.com" style="background: #222222; border: 15px solid #222222; font-family: sans-serif; font-size: 13px; line-height: 1.1; text-align: center; text-decoration: none; display: block; border-radius: 3px; font-weight: bold;" class="button-a">
+																	<span style="color:#ffffff;" class="button-link">&nbsp;&nbsp;&nbsp;&nbsp;A Button&nbsp;&nbsp;&nbsp;&nbsp;</span>
+																</a>
+															</td>
+														</tr>
+													</table>
+													<!-- Button : END -->
+												</td>
+											</tr>
+										</table>
+									</div>
+									<!--[if mso]>
+									</td>
+									</tr>
+									</table>
+									<![endif]-->
+								</td>
+							</tr>
+						</table>
+						<!--[if mso]>
+						</td>
+						</tr>
+						</table>
+						<![endif]-->
+					</td>
+				</tr>
+				<!-- Thumbnail Left, Text Right : END -->
+
+				<!-- Thumbnail Right, Text Left : BEGIN -->
+				<tr>
+					<!-- dir=rtl is where the magic happens. This can be changed to dir=ltr to swap the alignment on wide while maintaining stack order on narrow. -->
+					<td dir="rtl" bgcolor="#ffffff" align="center" height="100%" valign="top" width="100%" style="padding: 10px 0;">
+						<!--[if mso]>
+						<table role="presentation" border="0" cellspacing="0" cellpadding="0" align="center" width="660" style="width: 660px;">
+						<tr>
+						<td align="center" valign="top" width="660">
+						<![endif]-->
+						<table role="presentation" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:660px;">
+							<tr>
+								<td align="center" valign="top" style="font-size:0; padding: 10px 0;">
+									<!--[if mso]>
+									<table role="presentation" border="0" cellspacing="0" cellpadding="0" align="center" width="660" style="width: 660px;">
+									<tr>
+									<td align="left" valign="top" width="220" style="width: 220px;">
+									<![endif]-->
+									<div style="display:inline-block; margin: 0 -2px; max-width: 200px; min-width:160px; vertical-align:top; width:100%;" class="stack-column">
+										<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+											<tr>
+												<td dir="ltr" style="padding: 0 10px 10px 10px;">
+													<img src="http://placehold.it/200" width="200" height="" border="0" alt="alt_text" class="center-on-narrow" style="width: 100%; max-width: 200px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+												</td>
+											</tr>
+										</table>
+									</div>
+									<!--[if mso]>
+									</td>
+									<td align="left" valign="top" width="440" style="width: 440px;">
+									<![endif]-->
+									<div style="display:inline-block; margin: 0 -2px; max-width:66.66%; min-width:320px; vertical-align:top;" class="stack-column">
+										<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+											<tr>
+												<td dir="ltr" style="font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555; padding: 10px 10px 0; text-align: left;" class="center-on-narrow">
+													<h2 style="margin: 0 0 10px 0; font-family: sans-serif; font-size: 18px; line-height: 21px; color: #333333; font-weight: bold;">Class aptent taciti sociosqu</h2>
+													<p style="margin: 0 0 10px 0;">Maecenas sed ante pellentesque, posuere leo id, eleifend dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+													<!-- Button : BEGIN -->
+													<table role="presentation" cellspacing="0" cellpadding="0" border="0" class="center-on-narrow" style="float:left;">
+														<tr>
+															<td style="border-radius: 3px; background: #222222; text-align: center;" class="button-td">
+																<a href="http://www.google.com" style="background: #222222; border: 15px solid #222222; font-family: sans-serif; font-size: 13px; line-height: 1.1; text-align: center; text-decoration: none; display: block; border-radius: 3px; font-weight: bold;" class="button-a">
+																	<span style="color:#ffffff;" class="button-link">&nbsp;&nbsp;&nbsp;&nbsp;A Button&nbsp;&nbsp;&nbsp;&nbsp;</span>
+																</a>
+															</td>
+														</tr>
+													</table>
+													<!-- Button : END -->
+												</td>
+											</tr>
+										</table>
+									</div>
+									<!--[if mso]>
+									</td>
+									</tr>
+									</table>
+									<![endif]-->
+								</td>
+							</tr>
+						</table>
+						<!--[if mso]>
+						</td>
+						</tr>
+						</table>
+						<![endif]-->
+					</td>
+				</tr>
+				<!-- Thumbnail Right, Text Left : END -->
+
+				<!-- Clear Spacer : BEGIN -->
+				<tr>
+					<td aria-hidden="true" height="40" style="font-size: 0; line-height: 0;">
+						&nbsp;
+					</td>
+				</tr>
+				<!-- Clear Spacer : END -->
+
+				<!-- 1 Column Text : BEGIN -->
+				<tr>
+					<td bgcolor="#ffffff">
+						<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+							<tr>
+								<td style="padding: 40px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+									<p style="margin: 0 0 10px 0;">Maecenas sed ante pellentesque, posuere leo id, eleifend dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent laoreet malesuada cursus. Maecenas scelerisque congue eros eu posuere. Praesent in felis ut velit pretium lobortis rhoncus ut&nbsp;erat.</p>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<!-- 1 Column Text : END -->
+
+			</table>
+			<!-- Email Body : END -->
+
+			<!-- Email Footer : BEGIN -->
+			<table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 680px; font-family: sans-serif; color: #888888; line-height:18px;">
+				<tr>
+					<td style="padding: 40px 10px;width: 100%;font-size: 12px; font-family: sans-serif; line-height:18px; text-align: center; color: #888888;" class="x-gmail-data-detectors">
+						<webversion style="color:#cccccc; text-decoration:underline; font-weight: bold;">View as a Web Page</webversion>
+						<br><br>
+						Company Name<br>123 Fake Street, SpringField, OR, 97477 US<br>(123) 456-7890
+						<br><br>
+						<unsubscribe style="color:#888888; text-decoration:underline;">unsubscribe</unsubscribe>
+					</td>
+				</tr>
+			</table>
+			<!-- Email Footer : END -->
+
+			<!--[if mso]>
+			</td>
+			</tr>
+			</table>
+			<![endif]-->
+		</div>
+
+		<!-- Full Bleed Background Section : BEGIN -->
+		<table role="presentation" bgcolor="#709f2b" cellspacing="0" cellpadding="0" border="0" align="center" width="100%">
+			<tr>
+				<td valign="top" align="center">
+					<div style="max-width: 680px; margin: auto;" class="email-container">
+						<!--[if mso]>
+						<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="680" align="center">
+						<tr>
+						<td>
+						<![endif]-->
+						<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+							<tr>
+								<td style="padding: 40px; text-align: left; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #ffffff;">
+									<p style="margin: 0;">Maecenas sed ante pellentesque, posuere leo id, eleifend dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent laoreet malesuada cursus. Maecenas scelerisque congue eros eu posuere. Praesent in felis ut velit pretium lobortis rhoncus ut&nbsp;erat.</p>
+								</td>
+							</tr>
+						</table>
+						<!--[if mso]>
+						</td>
+						</tr>
+						</table>
+						<![endif]-->
+					</div>
+				</td>
+			</tr>
+		</table>
+		<!-- Full Bleed Background Section : END -->
+
+	</center>
 </body>
-
 </html>
