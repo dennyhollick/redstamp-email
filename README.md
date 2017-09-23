@@ -5,7 +5,7 @@ To view the work, simply download the repository and open index-inlined.html
 - [x] Cross Browser Tested
 - [x] Cross Platform Tested
 - [x] Responsive
-- [] Includes SVG
+- [ ] Includes SVG
 
 For this I tried to ensure maximum compatibility across all email clients. To do that I used a well developed/supported boilerplate and modified it to work for the email.
 
