@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;margin: 0 auto !important;padding: 0 !important;height: 100% !important;width: 100% !important;">
+
+<head style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+
+	<meta charset="utf-8" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+	<!-- utf-8 works for most cases -->
+	<meta name="viewport" content="width=device-width" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+	<!-- Forcing initial-scale shouldn't be necessary -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+	<!-- Use the latest (edge) version of IE rendering engine -->
+	<meta name="x-apple-disable-message-reformatting" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+	<!-- Disable auto-scale in iOS 10 Mail entirely -->
+	<title style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;"></title>
+	<!-- The title tag shows in email notifications, like Android 4.4. -->
+
+	<!-- Web Font / @font-face : BEGIN -->
+	<!-- NOTE: If web fonts are not required, lines 10 - 27 can be safely removed. -->
+
+	<!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
+	<!--[if mso]>
+		<style>
+			* {
+				font-family: sans-serif !important;
+			}
+		</style>
+	<![endif]-->
+
+	<!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
+	<!--[if !mso]><!-->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+	<link href="https://fonts.googleapis.com/css?family=Neuton:300,400,700" rel="stylesheet" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+	<!-- Web Font / @font-face : END -->
+
+	<!-- CSS Reset : BEGIN -->
+	<style style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+		/* What it does: Remove spaces around the email design added by some email clients. */
+		/* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+
+		html,
+		body {
+			margin: 0 auto !important;
+			padding: 0 !important;
+			height: 100% !important;
+			width: 100% !important;
+		}
+		/* What it does: Stops email clients resizing small text. */
+
+		* {
+			-ms-text-size-adjust: 100%;
+			-webkit-text-size-adjust: 100%;
+		}
+		/* What it does: Centers email on Android 4.4 */
+
+		div[style*="margin: 16px 0"] {
+			margin: 0 !important;
+		}
+		/* What it does: Stops Outlook from adding extra spacing to tables. */
+
+		table,
+		td {
+			mso-table-lspace: 0pt !important;
+			mso-table-rspace: 0pt !important;
+		}
+		/* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
+
+		table {
+			border-spacing: 0 !important;
+			border-collapse: collapse !important;
+			table-layout: fixed !important;
+			margin: 0 auto !important;
+		}
+
+		table table table {
+			table-layout: auto;
+		}
+		/* What it does: Uses a better rendering method when resizing images in IE. */
+
+		img {
+			-ms-interpolation-mode: bicubic;
+		}
+		/* What it does: A work-around for email clients meddling in triggered links. */
+
+		*[x-apple-data-detectors],
+		/* iOS */
+
+		.x-gmail-data-detectors,
+		/* Gmail */
+
+		.x-gmail-data-detectors *,
+		.aBn {
+			border-bottom: 0 !important;
+			cursor: default !important;
+			color: inherit !important;
+			text-decoration: none !important;
+			font-size: inherit !important;
+			font-family: inherit !important;
+			font-weight: inherit !important;
+			line-height: inherit !important;
+		}
+		/* What it does: Prevents Gmail from displaying an download button on large, non-linked images. */
+
+		.a6S {
+			display: none !important;
+			opacity: 0.01 !important;
+		}
+		/* If the above doesn't work, add a .g-img class to any image in question. */
+
+		img.g-img+div {
+			display: none !important;
+		}
+		/* What it does: Prevents underlining the button text in Windows 10 */
+
+		.button-link {
+			text-decoration: none !important;
+		}
+		/* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+		/* Create one of these media queries for each additional viewport size you'd like to fix */
+		/* Thanks to Eric Lepetit @ericlepetitsf) for help troubleshooting */
+
+		@media only screen and (min-device-width: 375px) and (max-device-width: 413px) {
+			/* iPhone 6 and 6+ */
+			.email-container {
+				min-width: 375px !important;
+			}
+		}
+	</style>
+	<!-- CSS Reset : END -->
+
+	<!-- Progressive Enhancements : BEGIN -->
+	<style style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+
+		/* Resize an element that has a width and height of zero to full size */
+		.showy {
+			height: 100% !important;
+			width: 100% !important;
+		}
+
+		/* Hide this everywhere, except for those that can’t read this code */
+		.no-showy {
+			display: none;
+		}
+
+		/* What it does: Hover styles for buttons */
+
+		.button-td,
+		.button-a {
+			transition: all 100ms ease-in;
+		}
+
+		.button-td:hover,
+		.button-a:hover {
+			background: #555555 !important;
+			border-color: #555555 !important;
+		}
+		/* Media Queries */
+
+		@media screen and (max-width: 480px) {
+
+			/* What it does: Forces elements to resize to the full width of their container. Useful for resizing images beyond their max-width. */
+			.fluid {
+				width: 100% !important;
+				max-width: 100% !important;
+				height: auto !important;
+				margin-left: auto !important;
+				margin-right: auto !important;
+			}
+
+			/* What it does: Forces table cells into full-width rows. */
+			.stack-column,
+			.stack-column-center {
+				display: block !important;
+				width: 100% !important;
+				max-width: 100% !important;
+				direction: ltr !important;
+			}
+			/* And center justify these ones. */
+			.stack-column-center {
+				text-align: center !important;
+			}
+
+			/* What it does: Generic utility class for centering. Useful for images, buttons, and nested tables. */
+			.center-on-narrow {
+				text-align: center !important;
+				display: block !important;
+				margin-left: auto !important;
+				margin-right: auto !important;
+				float: none !important;
+			}
+			table.center-on-narrow {
+				display: inline-block !important;
+			}
+
+			.marginless-on-narrow {
+				margin: 0;
+			}
+
+			/* What it does: Adjust typography on small screens to improve readability */
+			.email-container p {
+				font-size: 17px !important;
+				line-height: 22px !important;
+			}
+		}
+	</style>
+	<!-- Progressive Enhancements : END -->
+
+	<!-- What it does: Makes background images in 72ppi Outlook render at correct size. -->
+	<!--[if gte mso 9]>
+	<xml>
+		<o:OfficeDocumentSettings>
+			<o:AllowPNG/>
+			<o:PixelsPerInch>96</o:PixelsPerInch>
+		</o:OfficeDocumentSettings>
+	</xml>
+	<![endif]-->
+
+</head>
+
+<body width="100%" bgcolor="#222222" style="margin: 0 auto !important;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;padding: 0 !important;height: 100% !important;width: 100% !important;">
+
+	<center style="width: 100%;background: #ffffff;text-align: left;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+
+		<!-- Visually Hidden Preheader Text : BEGIN -->
+		<div style="display: none;font-size: 1px;line-height: 1px;max-height: 0px;max-width: 0px;opacity: 0;overflow: hidden;mso-hide: all;font-family: sans-serif;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+			Get all the learnings from Traction Conference without having to buy a ticket!
+		</div>
+		<!-- Visually Hidden Preheader Text : END -->
+
+		<!--
+			Set the email width. Defined in two places:
+			1. max-width for all clients except Desktop Windows Outlook, allowing the email to squish on narrow but never go wider than 680px.
+			2. MSO tags for Desktop Windows Outlook enforce a 680px width.
+			Note: The Fluid and Responsive templates have a different width (600px). The hybrid grid is more "fragile", and I've found that 680px is a good width. Change with caution.
+		-->
+		<div style="max-width: 680px;margin: auto;background-color: #ffffff;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" class="email-container">
+			<!--[if mso]>
+			<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="680" align="center">
+			<tr>
+			<td>
+			<![endif]-->
+
+			<!-- Email Header : BEGIN -->
+			<!-- ********TODO:******** FALLBACK ON SVG, Font -->
+			<table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 680px;background-color: #ffffff;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;border-spacing: 0 !important;border-collapse: collapse !important;table-layout: fixed !important;margin: 0 auto !important;">
+				<tr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+					<td style="padding: 20px 0;text-align: left;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;">
+
+						<img style="max-width: 141px;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;-ms-interpolation-mode: bicubic;" src="https://gallery.mailchimp.com/800c123cbea53219ad7290e34/images/2f24fa77-a609-41d8-9d98-686a6f826b4d.png">
+					</td>
+					<td style="padding: 20px 0;text-align: right;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;">
+						<a style="font-family: Open Sans, sans-serif;text-decoration: none;font-size: 10px;color: #ec5447;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" href="http://redstamp.co">View in your browser</a>
+					</td>
+				</tr>
+			</table>
+			<!-- Email Header : END -->
+
+			<!-- Email Body : BEGIN -->
+			<table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 680px;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;border-spacing: 0 !important;border-collapse: collapse !important;table-layout: fixed !important;margin: 0 auto !important;" class="email-container">
+
+				<!-- Thumbnail Right, Text Left : BEGIN -->
+				<tr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+					<!-- dir=rtl is where the magic happens. This can be changed to dir=ltr to swap the alignment on wide while maintaining stack order on narrow. -->
+					<td dir="rtl" bgcolor="#ffffff" align="center" height="100%" valign="top" width="100%" style="padding: 10px 0;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;">
+						<!--[if mso]>
+						<table role="presentation" border="0" cellspacing="0" cellpadding="0" align="center" width="660" style="width: 660px;">
+						<tr>
+						<td align="center" valign="top" width="660">
+						<![endif]-->
+						<table role="presentation" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width: 660px;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;border-spacing: 0 !important;border-collapse: collapse !important;table-layout: fixed !important;margin: 0 auto !important;">
+							<tr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+								<td align="center" valign="top" style="font-size: 0;padding: 10px 0;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;">
+									<!--[if mso]>
+									<table role="presentation" border="0" cellspacing="0" cellpadding="0" align="center" width="660" style="width: 660px;">
+									<tr>
+									<td align="left" valign="top" width="220" style="width: 220px;">
+									<![endif]-->
+									<div style="display: inline-block;margin: 0 -2px;max-width: 250px;min-width: 160px;vertical-align: top;width: 100%;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" class="stack-column">
+										<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;table-layout: fixed !important;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;border-spacing: 0 !important;border-collapse: collapse !important;margin: 0 auto !important;">
+											<tr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+												<td dir="ltr" style="padding: 0 10px 10px 10px;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;">
+													<img src="https://gallery.mailchimp.com/800c123cbea53219ad7290e34/images/b44d6fcc-d568-4bca-b35c-4fa81773817f.png" width="250" height="" border="0" alt="Traction conference logo" class="center-on-narrow" style="width: 100%;max-width: 250px;height: auto;font-family: sans-serif;font-size: 15px;line-height: 20px;color: #555555;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;-ms-interpolation-mode: bicubic;">
+												</td>
+											</tr>
+										</table>
+									</div>
+									<!--[if mso]>
+									</td>
+									<td align="left" valign="top" width="390" style="width: 390px;">
+									<![endif]-->
+									<div style="display: inline-block;margin: 0 -2px;max-width: 390px;min-width: 320px;vertical-align: top;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" class="stack-column">
+										<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;table-layout: fixed !important;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;border-spacing: 0 !important;border-collapse: collapse !important;margin: 0 auto !important;">
+											<tr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+												<td dir="rtl" style="font-family: sans-serif;font-size: 15px;line-height: 20px;color: #555555;padding: 10px 10px 0;text-align: left;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;" class="center-on-narrow">
+													<h2 style="margin: 0 0 10px 0;font-family: Neuton, serif;font-size: 50px;line-height: 44px;color: #333333;font-weight: 400;letter-spacing: .02em;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">Summer<br style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">Newsletter</h2>
+													<p style="margin: 0 0 10px 0;font-size: 14px;padding-top: 20px;font-family: Open Sans, sans-serif;color: #85939e;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">Lorem ipsum dolor sit amet proin gravida amet lorem ipsum sum dolor sit.
+													</p>
+												</td>
+											</tr>
+										</table>
+									</div>
+									<!--[if mso]>
+									</td>
+									</tr>
+									</table>
+									<![endif]-->
+								</td>
+							</tr>
+						</table>
+						<!--[if mso]>
+						</td>
+						</tr>
+						</table>
+						<![endif]-->
+					</td>
+				</tr>
+				<!-- Thumbnail Right, Text Left : END -->
+
+				<!-- Hero Image, Flush : BEGIN -->
+				<tr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+					<td bgcolor="#ffffff" align="center" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;">
+						<img src="https://gallery.mailchimp.com/800c123cbea53219ad7290e34/images/d2d99c14-579e-4dca-8a81-af8a54a387e6.png" width="610" height="" alt="The Redstamp Team" border="0" align="center" style="width: 100%;max-width: 610px;height: auto;background: #dddddd;font-family: sans-serif;font-size: 15px;line-height: 20px;color: #555555;margin: auto;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;-ms-interpolation-mode: bicubic;" class="fluid g-img">
+					</td>
+				</tr>
+				<!-- Hero Image, Flush : END -->
+
+				<!-- Thumbnail Left, Text Right : BEGIN -->
+				<tr bgcolor="#f7f8f9" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+					<!-- dir=ltr is where the magic happens. This can be changed to dir=rtl to swap the alignment on wide while maintaining stack order on narrow. -->
+					<td dir="ltr" bgcolor="#f7f8f9" align="center" height="100%" valign="top" width="100%" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;">
+						<!--[if mso]>
+								<table role="presentation" border="0" cellspacing="0" cellpadding="0" align="center" width="660" style="width: 660px;">
+								<tr>
+								<td align="center" valign="top" width="660" style="width: 660px;">
+								<![endif]-->
+						<table role="presentation" bgcolor="ffffff" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width: 610px;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;border-spacing: 0 !important;border-collapse: collapse !important;table-layout: fixed !important;margin: 0 auto !important;">
+							<tr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+								<td align="center" valign="top" style="font-size: 0;padding: 10px 0;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;">
+									<!--[if mso]>
+											<table role="presentation" border="0" cellspacing="0" cellpadding="0" align="center" width="660" style="width: 660px;">
+											<tr>
+											<td align="left" valign="top" width="220" style="width: 220px;">
+											<![endif]-->
+									<div style="display: inline-block;margin: 0 -2px;max-width: 200px;min-width: 160px;vertical-align: top;width: 100%;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" class="stack-column">
+										<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;table-layout: fixed !important;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;border-spacing: 0 !important;border-collapse: collapse !important;margin: 0 auto !important;">
+											<tr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+												<td dir="ltr" style="padding: 50px 60px 10px 60px;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;">
+													<hr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+												</td>
+											</tr>
+										</table>
+									</div>
+									<!--[if mso]>
+											</td>
+											<td align="left" valign="top" width="440" style="width: 440px;">
+											<![endif]-->
+									<div style="display: inline-block;margin: 0 -2px;max-width: 66.66%;min-width: 320px;vertical-align: top;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" class="stack-column">
+										<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;table-layout: fixed !important;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;border-spacing: 0 !important;border-collapse: collapse !important;margin: 0 auto !important;">
+											<tr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+												<td dir="ltr" style="font-family: sans-serif;font-size: 15px;line-height: 20px;color: #555555;padding: 10px 10px 0;text-align: left;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;" class="center-on-narrow">
+													<h2 style="margin: 0 0 10px 0;font-family: Open Sans, sans-serif;font-size: 12px;line-height: 21px;color: #60cbe2;font-weight: 700;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">TRACTION</h2>
+													<h2 style="margin: 0 0 10px 0;font-family: Neuton, serif;font-size: 20px;line-height: 21px;color: #333333;font-weight: 700;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">Traction Conference 2017</h2>
+													<p style="margin: 0 0 10px 0;font-family: Open Sans, sans-serif;font-size: 14px;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">Hi There! We’re still riding high on our incredible experience at this year’s Traction conference! We helped
+														sponsor the event, bringing some of the best minds in tech, SaaS, and growth to Vancouver for a few days of
+														straight-up geeking out.<br style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;"><br style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;"> We made a lot of new friends and learned a lot of new things, and we’re
+														already excited to make an even bigger splash next year! </p>
+												</td>
+											</tr>
+										</table>
+									</div>
+									<!--[if mso]>
+											</td>
+											</tr>
+											</table>
+											<![endif]-->
+								</td>
+							</tr>
+						</table>
+						<!--[if mso]>
+								</td>
+								</tr>
+								</table>
+								<![endif]-->
+					</td>
+				</tr>
+				<!-- Thumbnail Left, Text Right : END -->
+
+				<!-- 1 Column Text + Button : BEGIN -->
+				<tr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+					<td bgcolor="#f7f8f9" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;">
+						<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;border-spacing: 0 !important;border-collapse: collapse !important;table-layout: fixed !important;margin: 0 auto !important;">
+							<tr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+								<td style="padding: 40px 40px 10px;text-align: center;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;">
+									<h1 style="margin: 0;font-family: Neuton, serif;font-size: 28px;line-height: 27px;color: #333333;font-weight: normal;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">3 Tips for Action</h1>
+								</td>
+							</tr>
+							<tr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+								<td style="padding: 0 40px 40px;font-family: sans-serif;font-size: 15px;line-height: 20px;color: #555555;text-align: center;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;">
+									<p style="margin: 0;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">All the things you need to know lorem ipsum.</p>
+								</td>
+							</tr>
+
+
+						</table>
+					</td>
+				</tr>
+				<!-- 1 Column Text + Button : END -->
+
+				<!-- Thumbnail Left, Text Right : BEGIN -->
+				<tr bgcolor="#f7f8f9" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+					<!-- dir=ltr is where the magic happens. This can be changed to dir=rtl to swap the alignment on wide while maintaining stack order on narrow. -->
+					<td dir="ltr" bgcolor="#f7f8f9" align="center" height="100%" valign="top" width="100%" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;">
+						<!--[if mso]>
+												<table role="presentation" border="0" cellspacing="0" cellpadding="0" align="center" width="660" style="width: 660px;">
+												<tr>
+												<td align="center" valign="top" width="660" style="width: 660px;">
+												<![endif]-->
+						<table role="presentation" bgcolor="ffffff" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width: 610px;border: solid 1px #eceef0;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;border-spacing: 0 !important;border-collapse: collapse !important;table-layout: fixed !important;margin: 0 auto !important;">
+							<tr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+								<td align="center" valign="top" style="font-size: 0;padding: 10px 0;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;">
+									<!--[if mso]>
+															<table role="presentation" border="0" cellspacing="0" cellpadding="0" align="center" width="660" style="width: 660px;">
+															<tr>
+															<td align="left" valign="top" width="220" style="width: 220px;">
+															<![endif]-->
+									<div style="display: inline-block;margin: 0 -2px;max-width: 200px;min-width: 160px;vertical-align: top;width: 100%;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" class="stack-column">
+										<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;table-layout: fixed !important;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;border-spacing: 0 !important;border-collapse: collapse !important;margin: 0 auto !important;">
+											<tr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+												<td dir="ltr" align="center" style="padding: 10px 0 0 0;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;">
+													<img src="https://gallery.mailchimp.com/800c123cbea53219ad7290e34/images/18399d2c-9bdb-4cca-b4b3-16ba7e80c87f.png" width="200px" height="" border="0" alt="growth" class="center-on-narrow" style="width: 50%;margin: auto;max-width: 200px;height: auto;font-family: sans-serif;font-size: 15px;line-height: 20px;color: #555555;padding: 0 1-px 10px 10px;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;-ms-interpolation-mode: bicubic;">
+												</td>
+											</tr>
+										</table>
+									</div>
+									<!--[if mso]>
+															</td>
+															<td align="left" valign="top" width="440" style="width: 440px;">
+															<![endif]-->
+									<div style="display: inline-block;margin: 0 -2px;max-width: 66.66%;min-width: 320px;vertical-align: top;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" class="stack-column">
+										<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;table-layout: fixed !important;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;border-spacing: 0 !important;border-collapse: collapse !important;margin: 0 auto !important;">
+											<tr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+												<td dir="ltr" style="font-family: sans-serif;font-size: 15px;line-height: 20px;color: #555555;padding: 10px 10px;text-align: left;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;" class="center-on-narrow">
+													<h2 style="margin: 0 0 10px 0;font-family: Open Sans, sans-serif;font-size: 18px;line-height: 18px;color: #333333;font-weight: 700;letter-spacing: -1px;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">Investing for brand growth</h2>
+													<p style="margin: 0 0 10px 0;font-family: Open Sans, sans-serif;font-size: 12px;color: #85939e;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">Zapier is an incredibly versatile tool that integrates with all sorts of apps to make your life easier </p>
+													<p style="margin: 0 0 10px 0;font-family: Open Sans, sans-serif;font-size: 10px;color: #60cbe2;text-transform: uppercase;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">Read More</p>
+												</td>
+											</tr>
+										</table>
+									</div>
+									<!--[if mso]>
+															</td>
+															</tr>
+															</table>
+															<![endif]-->
+								</td>
+							</tr>
+						</table>
+						<!--[if mso]>
+												</td>
+												</tr>
+												</table>
+												<![endif]-->
+					</td>
+				</tr>
+				<!-- Thumbnail Left, Text Right : END -->
+
+				<tr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+					<td aria-hidden="true" bgcolor="#f7f8f9" height="20" style="font-size: 0;line-height: 0;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;">
+						&nbsp;
+					</td>
+				</tr>
+
+				<!-- Thumbnail Left, Text Right : BEGIN -->
+				<tr bgcolor="#f7f8f9" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+					<!-- dir=ltr is where the magic happens. This can be changed to dir=rtl to swap the alignment on wide while maintaining stack order on narrow. -->
+					<td dir="ltr" bgcolor="#f7f8f9" align="center" height="100%" valign="top" width="100%" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;">
+						<!--[if mso]>
+												<table role="presentation" border="0" cellspacing="0" cellpadding="0" align="center" width="660" style="width: 660px;">
+												<tr>
+												<td align="center" valign="top" width="660" style="width: 660px;">
+												<![endif]-->
+						<table role="presentation" bgcolor="ffffff" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width: 610px;border: solid 1px #eceef0;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;border-spacing: 0 !important;border-collapse: collapse !important;table-layout: fixed !important;margin: 0 auto !important;">
+							<tr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+								<td align="center" valign="top" style="font-size: 0;padding: 10px 0;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;">
+									<!--[if mso]>
+															<table role="presentation" border="0" cellspacing="0" cellpadding="0" align="center" width="660" style="width: 660px;">
+															<tr>
+															<td align="left" valign="top" width="220" style="width: 220px;">
+															<![endif]-->
+									<div style="display: inline-block;margin: 0 -2px;max-width: 200px;min-width: 160px;vertical-align: top;width: 100%;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" class="stack-column">
+										<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;table-layout: fixed !important;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;border-spacing: 0 !important;border-collapse: collapse !important;margin: 0 auto !important;">
+											<tr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+												<td dir="ltr" align="center" style="padding: 10px 0 0 0;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;">
+													<img src="https://gallery.mailchimp.com/800c123cbea53219ad7290e34/images/18399d2c-9bdb-4cca-b4b3-16ba7e80c87f.png" width="200px" height="" border="0" alt="growth" class="center-on-narrow" style="width: 50%;margin: auto;max-width: 200px;height: auto;font-family: sans-serif;font-size: 15px;line-height: 20px;color: #555555;padding: 0 1-px 0px 0px;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;-ms-interpolation-mode: bicubic;">
+												</td>
+											</tr>
+										</table>
+									</div>
+									<!--[if mso]>
+															</td>
+															<td align="left" valign="top" width="440" style="width: 440px;">
+															<![endif]-->
+									<div style="display: inline-block;margin: 0 -2px;max-width: 66.66%;min-width: 320px;vertical-align: top;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" class="stack-column">
+										<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;table-layout: fixed !important;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;border-spacing: 0 !important;border-collapse: collapse !important;margin: 0 auto !important;">
+											<tr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+												<td dir="ltr" style="font-family: sans-serif;font-size: 15px;line-height: 20px;color: #555555;padding: 10px 10px 0;text-align: left;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;" class="center-on-narrow">
+													<h2 style="margin: 0 0 10px 0;font-family: Open Sans, sans-serif;font-size: 18px;line-height: 18px;color: #333333;font-weight: 700;letter-spacing: -1px;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">Investing for brand growth</h2>
+													<p style="margin: 0 0 10px 0;font-family: Open Sans, sans-serif;font-size: 12px;color: #85939e;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">Zapier is an incredibly versatile tool that integrates with all sorts of apps to make your life easier </p>
+													<p style="margin: 0 0 10px 0;font-family: Open Sans, sans-serif;font-size: 10px;color: #60cbe2;text-transform: uppercase;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">Read More</p>
+												</td>
+											</tr>
+										</table>
+									</div>
+									<!--[if mso]>
+															</td>
+															</tr>
+															</table>
+															<![endif]-->
+								</td>
+							</tr>
+						</table>
+						<!--[if mso]>
+												</td>
+												</tr>
+												</table>
+												<![endif]-->
+					</td>
+				</tr>
+				<!-- Thumbnail Left, Text Right : END -->
+
+				<tr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+					<td aria-hidden="true" bgcolor="#f7f8f9" height="20" style="font-size: 0;line-height: 0;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;">
+						&nbsp;
+					</td>
+				</tr>
+
+				<!-- Thumbnail Left, Text Right : BEGIN -->
+				<tr bgcolor="#f7f8f9" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+					<!-- dir=ltr is where the magic happens. This can be changed to dir=rtl to swap the alignment on wide while maintaining stack order on narrow. -->
+					<td dir="ltr" bgcolor="#f7f8f9" align="center" height="100%" valign="top" width="100%" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;">
+						<!--[if mso]>
+													<table role="presentation" border="0" cellspacing="0" cellpadding="0" align="center" width="660" style="width: 660px;">
+													<tr>
+													<td align="center" valign="top" width="660" style="width: 660px;">
+													<![endif]-->
+						<table role="presentation" bgcolor="ffffff" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width: 610px;border: solid 1px #eceef0;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;border-spacing: 0 !important;border-collapse: collapse !important;table-layout: fixed !important;margin: 0 auto !important;">
+							<tr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+								<td align="center" valign="top" style="font-size: 0;padding: 10px 0;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;">
+									<!--[if mso]>
+																<table role="presentation" border="0" cellspacing="0" cellpadding="0" align="center" width="660" style="width: 660px;">
+																<tr>
+																<td align="left" valign="top" width="220" style="width: 220px;">
+																<![endif]-->
+									<div style="display: inline-block;margin: 0 -2px;max-width: 200px;min-width: 160px;vertical-align: top;width: 100%;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" class="stack-column">
+										<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;table-layout: fixed !important;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;border-spacing: 0 !important;border-collapse: collapse !important;margin: 0 auto !important;">
+											<tr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+												<td dir="ltr" align="center" style="padding: 10px 0 0 0;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;">
+													<img src="https://gallery.mailchimp.com/800c123cbea53219ad7290e34/images/18399d2c-9bdb-4cca-b4b3-16ba7e80c87f.png" width="200px" height="" border="0" alt="growth" class="center-on-narrow" style="width: 50%;margin: auto;max-width: 200px;height: auto;font-family: sans-serif;font-size: 15px;line-height: 20px;color: #555555;padding: 0 1-px 10px 10px;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;-ms-interpolation-mode: bicubic;">
+												</td>
+											</tr>
+										</table>
+									</div>
+									<!--[if mso]>
+																</td>
+																<td align="left" valign="top" width="440" style="width: 440px;">
+																<![endif]-->
+									<div style="display: inline-block;margin: 0 -2px;max-width: 66.66%;min-width: 320px;vertical-align: top;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" class="stack-column">
+										<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;table-layout: fixed !important;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;border-spacing: 0 !important;border-collapse: collapse !important;margin: 0 auto !important;">
+											<tr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+												<td dir="ltr" style="font-family: sans-serif;font-size: 15px;line-height: 20px;color: #555555;padding: 10px 10px 0;text-align: left;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;" class="center-on-narrow">
+													<h2 style="margin: 0 0 10px 0;font-family: Open Sans, sans-serif;font-size: 18px;line-height: 18px;color: #333333;font-weight: 700;letter-spacing: -1px;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">Investing for brand growth</h2>
+													<p style="margin: 0 0 10px 0;font-family: Open Sans, sans-serif;font-size: 12px;color: #85939e;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">Zapier is an incredibly versatile tool that integrates with all sorts of apps to make your life easier </p>
+													<p style="margin: 0 0 10px 0;font-family: Open Sans, sans-serif;font-size: 10px;color: #60cbe2;text-transform: uppercase;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">Read More</p>
+												</td>
+											</tr>
+										</table>
+									</div>
+									<!--[if mso]>
+																</td>
+																</tr>
+																</table>
+																<![endif]-->
+								</td>
+							</tr>
+						</table>
+						<!--[if mso]>
+													</td>
+													</tr>
+													</table>
+													<![endif]-->
+					</td>
+				</tr>
+				<!-- Thumbnail Left, Text Right : END -->
+				<tr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+					<td aria-hidden="true" bgcolor="#f7f8f9" height="50" style="font-size: 0;line-height: 0;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;">
+						<hr style="border: solid 1px #eceef0;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+					</td>
+				</tr>
+
+				<!-- 1 Column Text + Button : BEGIN -->
+				<tr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+					<td bgcolor="#f7f8f9" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;">
+						<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;border-spacing: 0 !important;border-collapse: collapse !important;table-layout: fixed !important;margin: 0 auto !important;">
+							<tr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+								<td style="padding: 40px 40px 10px;text-align: center;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;">
+									<h1 style="margin: 0;font-family: Neuton, serif;font-size: 28px;line-height: 27px;color: #333333;font-weight: normal;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">Your favorite blog posts</h1>
+								</td>
+							</tr>
+							<tr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+								<td style="padding: 0 40px 40px;font-family: sans-serif;font-size: 15px;line-height: 20px;color: #555555;text-align: center;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;">
+									<p style="margin: 0;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">Our readers have found these posts interesting this month.</p>
+								</td>
+							</tr>
+
+
+						</table>
+					</td>
+				</tr>
+				<!-- 1 Column Text + Button : END -->
+
+
+				<!-- 2 Even Columns : BEGIN -->
+				<tr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+					<td bgcolor="#f7f8f9" align="center" height="100%" valign="top" width="100%" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;">
+						<!--[if mso]>
+						<table role="presentation" border="0" cellspacing="0" cellpadding="0" align="center" width="660">
+						<tr>
+						<td align="center" valign="top" width="660">
+						<![endif]-->
+						<table role="presentation" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width: 660px;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;border-spacing: 0 !important;border-collapse: collapse !important;table-layout: fixed !important;margin: 0 auto !important;">
+							<tr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+								<td align="center" valign="top" style="font-size: 0;padding: 10px 0;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;">
+									<!--[if mso]>
+									<table role="presentation" border="0" cellspacing="0" cellpadding="0" align="center" width="660">
+									<tr>
+									<td align="left" valign="top" width="280">
+									<![endif]-->
+									<div style="display: inline-block;margin: 0 -2px;width: 100%;min-width: 200px;max-width: 290px;vertical-align: top;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" class="stack-column">
+										<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="min-height: 315px;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;table-layout: fixed !important;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;border-spacing: 0 !important;border-collapse: collapse !important;margin: 0 auto !important;">
+											<tr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+												<td style="padding: 10px 10px;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;">
+													<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-size: 14px;text-align: left;background-color: #ffffff;min-height: 315px;border: solid 1px #eceef0;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;table-layout: fixed !important;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;border-spacing: 0 !important;border-collapse: collapse !important;margin: 0 auto !important;">
+														<tr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+															<td style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;">
+																<img src="https://gallery.mailchimp.com/800c123cbea53219ad7290e34/images/4b65166d-2f65-4358-885d-15272625bc63.png" width="310" height="" border="0" alt="Traction logo" class="center-on-narrow" style="width: 100%;max-width: 310px;height: auto;background: #dddddd;font-family: sans-serif;font-size: 15px;line-height: 20px;color: #555555;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;-ms-interpolation-mode: bicubic;">
+															</td>
+														</tr>
+														<tr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+															<td style="font-family: sans-serif;font-size: 15px;line-height: 20px;color: #555555;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;" class="stack-column-center">
+																<h2 style="margin: 0 10px 10px 10px;font-family: Open Sans, sans-serif;font-size: 12px;line-height: 21px;color: #60cbe2;font-weight: 700;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">TRACTION</h2>
+																<h2 style="margin: 0 10px 10px 10px;font-family: Neuton, serif;font-size: 20px;line-height: 21px;color: #333333;font-weight: 700;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">Takeaway from Traction</h2>
+																<p style="margin: 0 10px 10px 10px;font-family: Open Sans, sans-serif;font-size: 12px;color: #85939e;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">We learned so much from leading growth and business leaders at Traction Conf 2017. Here are our favourite
+																	Twitter takeaways from the two-day event.</p>
+															</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+										</table>
+									</div>
+									<!--[if mso]>
+									</td>
+									<td align="left" valign="top" width="280">
+									<![endif]-->
+									<div style="display: inline-block;margin: 0 -2px;width: 100%;min-width: 200px;max-width: 290px;vertical-align: top;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" class="stack-column">
+										<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="min-height: 315px;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;table-layout: fixed !important;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;border-spacing: 0 !important;border-collapse: collapse !important;margin: 0 auto !important;">
+											<tr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+												<td style="padding: 10px 10px;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;">
+													<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-size: 14px;text-align: left;border: solid 1px #eceef0;min-height: 315px;background-color: #ffffff;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;table-layout: fixed !important;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;border-spacing: 0 !important;border-collapse: collapse !important;margin: 0 auto !important;">
+														<tr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+															<td style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;">
+																<img src="https://gallery.mailchimp.com/800c123cbea53219ad7290e34/images/6dbf6939-4355-4d99-b67c-e060c77641c7.png" width="310" height="" border="0" alt="automation" class="center-on-narrow" style="width: 100%;max-width: 310px;height: auto;background: #dddddd;font-family: sans-serif;font-size: 15px;line-height: 20px;color: #555555;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;-ms-interpolation-mode: bicubic;">
+															</td>
+														</tr>
+														<tr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+															<td style="font-family: sans-serif;font-size: 15px;line-height: 20px;color: #555555;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;" class="stack-column-center">
+																<h2 style="margin: 0 10px 10px 10px;font-family: Open Sans, sans-serif;font-size: 12px;line-height: 21px;color: #60cbe2;font-weight: 700;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">TRACTION</h2>
+																<h2 style="margin: 0 10px 10px 10px;font-family: Neuton, serif;font-size: 20px;line-height: 21px;color: #333333;font-weight: 700;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">Sales Automation Made Easy</h2>
+																<p style="margin: 0 10px 10px 10px;font-family: Open Sans, sans-serif;font-size: 12px;color: #85939e;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">We learned so much from leading growth and business leaders at Traction Conf 2017. Here are our favourite
+																	Twitter takeaways from the two-day event.</p>
+															</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+										</table>
+									</div>
+									<!--[if mso]>
+									</td>
+									</tr>
+									</table>
+									<![endif]-->
+								</td>
+							</tr>
+						</table>
+						<!--[if mso]>
+						</td>
+						</tr>
+						</table>
+						<![endif]-->
+					</td>
+				</tr>
+				<!-- 2 Even Columns : END -->
+
+				<tr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+					<td aria-hidden="true" bgcolor="#f7f8f9" height="10" style="font-size: 0;line-height: 0;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;">
+						&nbsp;
+					</td>
+				</tr>
+
+				<tr bgcolor="#ec5447" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+					<td align="center" height="50px" style="color: #ffffff;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;">
+						<span style="font-family: Open Sans, sans-serif;font-weight: 400;color: #ffffff;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">We now do CRO, let us optimize your landing pages – </span>
+						<span style="font-family: Open Sans, sans-serif;font-weight: 600;color: #ffffff;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">Find out more</span>
+					</td>
+				</tr>
+
+			</table>
+
+			<!-- Email Body : END -->
+
+			<!-- Email Footer : BEGIN -->
+
+			<table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 580px;background-color: #ffffff;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;border-spacing: 0 !important;border-collapse: collapse !important;table-layout: fixed !important;margin: 0 auto !important;">
+					<tr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+						<td style="padding: 20px 0;text-align: left;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;">
+							<span style="font-family: Open Sans, sans-serif;opacity: .5;color: #85939e;font-size: 14px;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">Made in <strong style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">Canada &nbsp;</strong><img src="https://gallery.mailchimp.com/800c123cbea53219ad7290e34/images/5d039bc0-5922-4efd-97ea-35f73919fe03.png" height="15px" width="15px" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;-ms-interpolation-mode: bicubic;"></span>
+						</td>
+						<td style="padding: 20px 0;text-align: right;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;">
+								<img src="https://gallery.mailchimp.com/800c123cbea53219ad7290e34/images/cc14a3a8-3891-4c9e-99d6-dafbc637bdf9.png" width="35px" height="" border="0" alt="linkedin" style="font-family: sans-serif;font-size: 15px;line-height: 20px;color: #555555;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;-ms-interpolation-mode: bicubic;">
+								<img src="https://gallery.mailchimp.com/800c123cbea53219ad7290e34/images/4aad2004-3a0f-4779-9d3a-7d78fd88af40.png" width="35px" height="" border="0" alt="twitter" style="font-family: sans-serif;font-size: 15px;line-height: 20px;color: #555555;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;-ms-interpolation-mode: bicubic;">
+								<img src="https://gallery.mailchimp.com/800c123cbea53219ad7290e34/images/d57fb269-d85c-4c51-bfdc-e6410aa892ff.png" width="35px" height="" border="0" alt="facebook" style="font-family: sans-serif;font-size: 15px;line-height: 20px;color: #555555;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;-ms-interpolation-mode: bicubic;">
+								<img src="https://gallery.mailchimp.com/800c123cbea53219ad7290e34/images/469b59f4-7206-4f0f-9bd6-9f86aa676818.png" width="35px" height="" border="0" alt="instagram" style="font-family: sans-serif;font-size: 15px;line-height: 20px;color: #555555;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;-ms-interpolation-mode: bicubic;">
+						</td>
+					</tr>
+				</table>
+
+			<hr style="border: solid 1px #eceef0;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+
+
+
+			<table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 680px;font-family: Open Sans, sans-serif;color: #888888;line-height: 18px;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;border-spacing: 0 !important;border-collapse: collapse !important;table-layout: fixed !important;margin: 0 auto !important;">
+				<tr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+					<td style="padding: 40px 10px;width: 100%;font-size: 1px;font-family: Open Sans, sans-serif;line-height: 18px;text-align: center;color: #888888;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;">
+						<span style="font-size: 12px;font-family: Open Sans, sans-serif;color: #0a273c;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">UNSUBSCRIBE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+						<span style="font-size: 12px;color: #0a273c;font-family: Open Sans, sans-serif;text-transform: uppercase;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">VIEW IN BROWSER</span>
+						<br style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;"><br style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;"><span style="color: #85939e;opacity: 0.5;font-size: 12px;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">© 2011-2017 Red Stamp Agency Inc. All rights reserved.</span> 
+						<br style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;"><br style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;"><br style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+
+						<img src="https://gallery.mailchimp.com/800c123cbea53219ad7290e34/images/50435ab3-01ec-423f-8a1b-6d32b8d3c8f7.png" alt="logo" width="36" height="36" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;-ms-interpolation-mode: bicubic;">
+						
+					</td>
+				</tr>
+			</table>
+			<!-- Email Footer : END -->
+
+			<!--[if mso]>
+			</td>
+			</tr>
+			</table>
+			<![endif]-->
+		</div>
+
+	</center>
+</body>
+
+</html>
+
+
+						
